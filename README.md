@@ -16,8 +16,8 @@
     <a href="https://travis-ci.org/mixerapi/mixerapi" target="_blank">
         <img alt="Build Status" src="https://travis-ci.org/mixerapi/mixerapi.svg?branch=master">
     </a>
-    <a href="https://coveralls.io/repos/github/mixerapi/mixerapi/badge.svg?branch=master" target="_blank">
-        <img alt="Coverage Status" src="https://img.shields.io/coveralls/cakephp/cakephp/master.svg?style=flat-square">
+    <a href="https://coveralls.io/github/mixerapi/mixerapi?branch=master" target="_blank">
+        <img alt="Coverage Status" src="https://coveralls.io/repos/github/mixerapi/mixerapi/badge.svg?branch=master">
     </a>
     <a href="https://packagist.org/packages/mixerapi/mixerapi" target="_blank">
         <img alt="Packagist" src="https://img.shields.io/packagist/v/mixerapi/mixerapi.svg?style=flat-square">
