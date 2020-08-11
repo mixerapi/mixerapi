@@ -1,0 +1,55 @@
+{
+    "name": "mixerapi/mixerapi",
+    "description": "Streamline development of API-first applications in CakePHP",
+    "type": "project",
+    "license": "MIT",
+    "keywords": ["cakephp"],
+    "require": {
+        "php": ">=7.2",
+        "cakephp/cakephp": ">=4.0",
+        "mixerapi/bake": "dev-master",
+        "mixerapi/rest": "dev-master",
+        "mixerapi/hal-view": "dev-master",
+        "cnizzardini/cakephp-swagger-bake": "1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.5.0",
+        "cakephp/cakephp-codesniffer": "^4.2",
+        "phpstan/phpstan": "^0.12.32",
+        "phpmd/phpmd": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "MixerApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MixerApi\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@test",
+            "@cs-check",
+            "@stan",
+            "@md"
+        ],
+        "cs-check": "phpcs --colors -p --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/",
+        "cs-fix": "phpcbf --colors --standard=vendor/cakephp/cakephp-codesniffer/CakePHP src/",
+        "stan": "phpstan analyse src/",
+        "test": "phpunit --colors=always",
+        "md": "phpmd src/ ansi phpmd.xml",
+        "coverage": "phpunit --coverage-html coverage-reports/"
+    },
+    "support": {
+        "source": "https://github.com/mixerapi/mixerapi"
+    },
+    "authors": [
+        {
+            "name": "MixerApi",
+            "role": "Organization"
+        }
+    ],
+    "minimum-stability": "dev"
+}
