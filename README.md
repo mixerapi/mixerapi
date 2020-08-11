@@ -40,8 +40,8 @@ composer require mixerapi/mixerapi
 
 ## Setup
 
-You can either load all MixerApi plugins (see below) using `bin/cake plugin load MixerApi`. Alternatively, you can 
-modify your Applications bootstrap method yourself:
+To load all MixerApi plugins use `bin/cake plugin load MixerApi`. Alternatively, you can modify your Applications 
+bootstrap method yourself:
 
 ```php
 # src/Application.php
@@ -53,7 +53,7 @@ public function bootstrap(): void
 ```
 
 You can also load plugins individually. For instance, if your project only requires HalView and SwaggerBake your 
-Application->bootstrap() would resemble this:
+`Application->bootstrap()` would resemble this:
 
 ```php
 # src/Application.php
@@ -67,7 +67,7 @@ public function bootstrap(): void
 
 If you don't need the entire suite of plugins simply `composer require` on an as-needed basis. It's up to you!
 
-## Features
+## Plugins
 
 MixerAPI automatically installs the following plugins for your RESTful API project:
 
