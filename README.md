@@ -40,7 +40,7 @@ composer require mixerapi/mixerapi
 
 ## Setup
 
-To load all MixerApi plugins use `bin/cake plugin load MixerApi`. Alternatively, you can modify your Applications 
+To load all MixerApi plugins run `bin/cake plugin load MixerApi`. Alternatively, you can modify your Applications 
 bootstrap method yourself:
 
 ```php
