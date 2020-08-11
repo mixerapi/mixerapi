@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://mixerapi.com/">
-    <img alt="CakePHP" src="https://avatars0.githubusercontent.com/u/67695158?s=200&v=4" width="400" />
+    <img alt="CakePHP" src="mixer-api-200x-178x.png" width="400" />
   </a>
 </p>
 <p align="center">
