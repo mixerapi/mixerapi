@@ -71,11 +71,11 @@ If you don't need the entire suite of plugins simply `composer require` on an as
 
 MixerAPI automatically installs the following plugins for your RESTful API project:
 
-### [Mixer/Bake](https://github.com/mixerapi/bake)
+### [MixerApi/Bake](https://github.com/mixerapi/bake)
 
 A custom bake template focused on creating RESTful CakePHP controllers in seconds.
 
-### [Mixer/Rest](https://github.com/mixerapi/rest)
+### [MixerApi/Rest](https://github.com/mixerapi/rest)
 
 Gets your API project up and going quickly by creating routes for you. It can either:
 
@@ -87,7 +87,7 @@ Gets your API project up and going quickly by creating routes for you. It can ei
 A delightfully tasty tool for generating Swagger documentation with OpenApi 3.0.0 schema. This plugin automatically 
 builds your Swagger UI and ReDoc from your existing cake models and routes.
 
-### [Mixer/HalView](https://github.com/mixerapi/hal-view)
+### [MixerApi/HalView](https://github.com/mixerapi/hal-view)
 
 A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specification.html)) View for CakePHP. This plugin 
 supports links, pagination, and embedded resources. Once setup any request with application/hal+json will be rendered 
