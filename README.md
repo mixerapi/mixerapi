@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://mixerapi.com/">
-    <img alt="MixerApi" src="mixer-api-200x-178x.png" width="400" />
+    <img alt="MixerApi" src="mixer-api-200x-178x.png" />
   </a>
 </p>
 <p align="center">
