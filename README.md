@@ -1,14 +1,14 @@
-<h2 align="center">
+<h1 align="center">
   MixerApi
-</h2>
+</h1>
 <p align="center">
   <a href="http://mixerapi.com/">
     <img alt="MixerApi" src="mixer-api-200x-178x.png" />
   </a>
 </p>
-<h4 align="center">
+<h3 align="center">
   Streamline development of API-first applications in CakePHP
-</h4>
+</h3>
 <p align="center">
     <a href="LICENSE.txt" target="_blank">
         <img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square">
