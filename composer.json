@@ -51,5 +51,35 @@
             "role": "Organization"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/var/www/personal/mixerapi/rest",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "/var/www/personal/mixerapi/hal-view",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "/var/www/personal/mixerapi/bake",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "/var/www/personal/cakephp-swagger-bake",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
 }

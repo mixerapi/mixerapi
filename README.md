@@ -36,10 +36,12 @@
 
 ```bash
 composer require mixerapi/mixerapi
-bin/cake plugin load MixerApi
 ```
 
-Alternatively after composer installing you can manually load the plugin in your Application:
+## Setup
+
+You can either load all MixerApi plugins (see below) using `bin/cake plugin load MixerApi`. Alternatively, you can 
+modify your Applications bootstrap method yourself:
 
 ```php
 # src/Application.php
@@ -50,15 +52,30 @@ public function bootstrap(): void
 }
 ```
 
+You can also load plugins individually. For instance, if your project only requires HalView and SwaggerBake your 
+Application->bootstrap() would resemble this:
+
+```php
+# src/Application.php
+public function bootstrap(): void
+{
+    // other logic...
+    $this->addPlugin('MixerApi/HalView');
+    $this->addPlugin('SwaggerBake');
+}
+```
+
+If you don't need the entire suite of plugins simply `composer require` on an as-needed basis. It's up to you!
+
 ## Features
 
 MixerAPI automatically installs the following plugins for your RESTful API project:
 
-### [Bake](https://github.com/mixerapi/bake)
+### [Mixer/Bake](https://github.com/mixerapi/bake)
 
 A custom bake template focused on creating RESTful CakePHP controllers in seconds.
 
-### [Rest](https://github.com/mixerapi/rest)
+### [Mixer/Rest](https://github.com/mixerapi/rest)
 
 Gets your API project up and going quickly by creating routes for you. It can either:
 
@@ -70,7 +87,7 @@ Gets your API project up and going quickly by creating routes for you. It can ei
 A delightfully tasty tool for generating Swagger documentation with OpenApi 3.0.0 schema. This plugin automatically 
 builds your Swagger UI and ReDoc from your existing cake models and routes.
 
-### [HalView](https://github.com/mixerapi/hal-view)
+### [Mixer/HalView](https://github.com/mixerapi/hal-view)
 
 A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specification.html)) View for CakePHP. This plugin 
 supports links, pagination, and embedded resources. Once setup any request with application/hal+json will be rendered 
