@@ -30,10 +30,7 @@
     </a>
 </p>
 
-
 *Note: This is an alpha stage plugin*
-
-Streamline development of API-first applications in CakePHP
 
 ## Installation 
 
@@ -57,23 +54,23 @@ public function bootstrap(): void
 
 MixerAPI automatically installs the following plugins for your RESTful API project:
 
-### :cook: [Bake](https://github.com/mixerapi/bake)
+### [Bake](https://github.com/mixerapi/bake)
 
-Create RESTful CakePHP controllers in seconds with an API focused bake template.
+A custom bake template focused on creating RESTful CakePHP controllers in seconds.
 
-### :rocket: [Rest](https://github.com/mixerapi/rest)
+### [Rest](https://github.com/mixerapi/rest)
 
 Gets your API project up and going quickly by creating routes for you. It can either:
 
 - Build your routes.php file from a single command, or
 - Automatically expose RESTful CRUD routes with a handy middleware.
 
-### :battery: [SwaggerBake](https://github.com/cnizzardini/cakephp-swagger-bake)
+### [SwaggerBake](https://github.com/cnizzardini/cakephp-swagger-bake)
 
 A delightfully tasty tool for generating Swagger documentation with OpenApi 3.0.0 schema. This plugin automatically 
 builds your Swagger UI and ReDoc from your existing cake models and routes.
 
-### :newspaper_roll: [HalView](https://github.com/mixerapi/hal-view)
+### [HalView](https://github.com/mixerapi/hal-view)
 
 A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specification.html)) View for CakePHP. This plugin 
 supports links, pagination, and embedded resources. Once setup any request with application/hal+json will be rendered 
