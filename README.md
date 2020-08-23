@@ -159,7 +159,7 @@ Handles rendering entity validation errors and other exceptions for your API.
 Read the full documentation [here](https://github.com/mixerapi/exception-render).
 
 ### [Search](https://github.com/FriendsOfCake/search)
-[![Friends Of Cake](https://img.shields.io/badge/friendsofcake-plugin-blue?logo=cakephp)](#)
+[![Friends Of Cake](https://img.shields.io/badge/friendsofcake-plugin-blue?logo=cakephp)](https://github.com/FriendsOfCake/search)
 
 Search provides a simple interface to create paginate-able filters for your CakePHP application. Search helps you 
 easily expose searching your resources through HTTP GET query parameters and integrates fully with SwaggerBake.

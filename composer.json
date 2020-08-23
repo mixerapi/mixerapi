@@ -6,12 +6,13 @@
     "keywords": ["cakephp"],
     "require": {
         "php": ">=7.2",
-        "cakephp/cakephp": ">=4.0",
+        "cakephp/cakephp": "^4.0",
         "mixerapi/bake": "dev-master",
         "mixerapi/rest": "dev-master",
         "mixerapi/hal-view": "dev-master",
         "mixerapi/exception-render": "dev-master",
-        "cnizzardini/cakephp-swagger-bake": "1.*"
+        "friendsofcake/search": "^6.0",
+        "cnizzardini/cakephp-swagger-bake": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~8.5.0",
