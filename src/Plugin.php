@@ -16,6 +16,7 @@ class Plugin extends BasePlugin
     {
         $app->addPlugin('MixerApi/Rest');
         $app->addPlugin('MixerApi/HalView');
+        $app->addPlugin('MixerApi/ExceptionRender');
         $app->addPlugin('SwaggerBake');
 
         if (PHP_SAPI === 'cli') {

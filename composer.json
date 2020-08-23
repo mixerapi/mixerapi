@@ -10,6 +10,7 @@
         "mixerapi/bake": "dev-master",
         "mixerapi/rest": "dev-master",
         "mixerapi/hal-view": "dev-master",
+        "mixerapi/exception-render": "dev-master",
         "cnizzardini/cakephp-swagger-bake": "1.*"
     },
     "require-dev": {
