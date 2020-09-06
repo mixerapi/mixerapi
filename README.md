@@ -96,7 +96,7 @@ Read the full documentation [here](https://github.com/mixerapi/bake).
 Gets your API project up and going quickly by creating routes for you. It can either:
 
 - Build your routes.php file from a single command, or
-- Automatically expose RESTful CRUD routes with a handy middleware.
+- Automatically expose RESTful CRUD routes with a handy AutoRouter class.
 
 ```
 # config/routes.php
