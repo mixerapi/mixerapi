@@ -14,10 +14,11 @@ class Plugin extends BasePlugin
      */
     public function bootstrap(PluginApplicationInterface $app): void
     {
-        $app->addPlugin('MixerApi/Rest');
+        $app->addPlugin('MixerApi/CollectionView');
+        $app->addPlugin('MixerApi/ExceptionRender');
         $app->addPlugin('MixerApi/HalView');
         $app->addPlugin('MixerApi/JsonLdView');
-        $app->addPlugin('MixerApi/ExceptionRender');
+        $app->addPlugin('MixerApi/Rest');
         $app->addPlugin('SwaggerBake');
 
         if (PHP_SAPI === 'cli') {
