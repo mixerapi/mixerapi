@@ -37,7 +37,8 @@ streamline API development for CakePHP applications. It eases following a [REST]
 architecture style and [HATEOS](https://restfulapi.net/hateoas/). In other words, it makes developing APIs a piece 
 of cake.
 
-[Demo Application](#) | [Demo Source Code](#)
+[Documentation](https://mixerapi.com) | [Demo Application](https://demo.mixerapi.com) | 
+[Demo Source Code](https://github.com/mixerapi/demo)
 
 ## Installation 
 
