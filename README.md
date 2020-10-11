@@ -42,7 +42,7 @@ of cake.
 
 ## Installation 
 
-```bash
+```console
 composer require mixerapi/mixerapi
 ```
 
@@ -92,12 +92,12 @@ MixerAPI automatically installs the following plugins for your RESTful API proje
 
 ## Unit Tests
 
-```bash
+```console
 vendor/bin/phpunit
 ```
 
 ## Code Standards
 
-```bash
+```console
 composer check
 ```
