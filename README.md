@@ -101,4 +101,3 @@ vendor/bin/phpunit
 ```bash
 composer check
 ```
-```
