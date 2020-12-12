@@ -32,15 +32,19 @@
 
 *Note: This is an alpha stage plugin*
 
-MixerAPI is a plugin of plugins, that is to say, it combines many CakePHP libraries into a coherent package to 
-streamline API development for CakePHP applications. It eases following a [REST](https://restfulapi.net) 
-architecture style and [HATEOS](https://restfulapi.net/hateoas/). In other words, it makes developing APIs a piece 
+MixerAPI is a plugin of plugins, that is to say, it combines many CakePHP libraries into a coherent package to
+streamline API development for CakePHP applications. It eases following a [REST](https://restfulapi.net)
+architecture style and [HATEOS](https://restfulapi.net/hateoas/). In other words, it makes developing APIs a piece
 of cake.
 
-[Documentation](https://mixerapi.com) | [Demo Application](https://demo.mixerapi.com) | 
+[Documentation](https://mixerapi.com) |
+[Demo Application](https://demo.mixerapi.com) |
 [Demo Source Code](https://github.com/mixerapi/demo)
 
-## Installation 
+This is a read-only repository. Please submit issues and PRs to
+[mixerapi/mixerapi-dev](https://github.com/mixerapi/mixerapi-dev)
+
+## Installation
 
 ```console
 composer require mixerapi/mixerapi
@@ -48,7 +52,7 @@ composer require mixerapi/mixerapi
 
 ## Setup
 
-To load all MixerApi plugins run `bin/cake plugin load MixerApi`. Alternatively, you can modify your Applications 
+To load all MixerApi plugins run `bin/cake plugin load MixerApi`. Alternatively, you can modify your Applications
 bootstrap method yourself:
 
 ```php
@@ -60,7 +64,7 @@ public function bootstrap(): void
 }
 ```
 
-You can also load plugins individually. For instance, if your project only requires HalView and SwaggerBake your 
+You can also load plugins individually. For instance, if your project only requires HalView and SwaggerBake your
 `Application->bootstrap()` would resemble this:
 
 ```php
@@ -79,7 +83,7 @@ If you don't need the entire suite of plugins simply `composer require` on an as
 
 MixerAPI automatically installs the following plugins for your RESTful API project:
 
-| Plugin | Description | 
+| Plugin | Description |
 | ------------- | ------------- |
 | [MixerApi/Bake](https://github.com/mixerapi/bake) | A custom bake template focused on creating RESTful CakePHP controllers in seconds |
 | [MixerApi/CollectionView](https://github.com/mixerapi/collection-view) | A Collection View for displaying configurable pagination meta-data in JSON or XML collection responses |
