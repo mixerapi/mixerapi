@@ -11,6 +11,7 @@
         "friendsofcake/search": "^6.0",
         "mixerapi/bake": "^0.2",
         "mixerapi/collection-view": "^0.2",
+        "mixerapi/core": "^0.2",
         "mixerapi/exception-render": "^0.2",
         "mixerapi/hal-view": "^0.2",
         "mixerapi/json-ld-view": "^0.2",
@@ -55,5 +56,7 @@
             "name": "MixerApi",
             "role": "Organization"
         }
-    ]
+    ],
+    "prefer-stable": true,
+    "minimum_stability": "dev"
 }
