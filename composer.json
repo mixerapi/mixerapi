@@ -7,7 +7,7 @@
     "require": {
         "php": ">=7.2",
         "cakephp/cakephp": "~4.0",
-        "cnizzardini/cakephp-swagger-bake": "^1.0",
+        "cnizzardini/cakephp-swagger-bake": "^1.6",
         "friendsofcake/search": "^6.0",
         "mixerapi/bake": "^0.2",
         "mixerapi/collection-view": "^0.2",
