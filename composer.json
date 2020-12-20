@@ -23,9 +23,6 @@
         "phpstan/phpstan": "^0.12.32",
         "phpmd/phpmd": "^2.8"
     },
-    "replace": {
-        "mixerapi/core": "^0.2"
-    },
     "autoload": {
         "psr-4": {
             "MixerApi\\": "src/"
