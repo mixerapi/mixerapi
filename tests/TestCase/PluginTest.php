@@ -5,7 +5,7 @@ namespace MixerApi\Test\TestCase;
 use Cake\Core\Plugin;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use TestApp\Application;
+use MixerApi\Test\App\Application;
 
 class PluginTest extends TestCase
 {
@@ -14,7 +14,7 @@ class PluginTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        static::setAppNamespace();
+        static::setAppNamespace('MixerApi\Test\App');
     }
 
     public function testBootstrap()

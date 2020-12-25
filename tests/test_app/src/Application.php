@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace TestApp;
+namespace MixerApi\Test\App;
 
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
