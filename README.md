@@ -93,15 +93,3 @@ MixerAPI automatically installs the following plugins for your RESTful API proje
 | [MixerApi/Rest](https://github.com/mixerapi/rest) | Gets your API project up and going quickly by creating routes for you |
 | [Search](https://github.com/FriendsOfCake/search) | Search provides a simple interface to create paginate-able filters for your CakePHP application. |
 | [SwaggerBake](https://github.com/cnizzardini/cakephp-swagger-bake) | A delightfully tasty tool for generating Swagger documentation with OpenApi 3.0.0 schema |
-
-## Unit Tests
-
-```console
-vendor/bin/phpunit
-```
-
-## Code Standards
-
-```console
-composer check
-```
