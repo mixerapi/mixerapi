@@ -3,7 +3,7 @@
 </h1>
 <p align="center">
   <a href="http://mixerapi.com/">
-    <img alt="MixerAPI" src="mixer-api-200x-178x.png" />
+    <img alt="MixerAPI" src="https://mixerapi.com/assets/logo.png" />
   </a>
 </p>
 <h3 align="center">
