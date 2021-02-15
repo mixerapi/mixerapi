@@ -23,7 +23,7 @@
         <img alt="Packagist" src="https://img.shields.io/packagist/v/mixerapi/mixerapi.svg?style=flat-square">
     </a>
     <a href="https://book.cakephp.org/4/en/index.html">
-        <img alt="CakePHP >= 4" src="https://img.shields.io/badge/cakephp-%3E%3D%204.0-red?logo=cakephp">
+        <img alt="CakePHP >= 4" src="https://img.shields.io/badge/cakephp-^4.0-red?logo=cakephp">
     </a>
     <a href="https://php.net/" target="_blank">
         <img alt="PHP >= 7.2" src="https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?logo=php">
