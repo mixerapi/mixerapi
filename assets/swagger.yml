@@ -1,0 +1,121 @@
+openapi: "3.0.0"
+info:
+  version: 0.1.0
+  title: MixerApi
+  description: |
+    Streamline development of modern RESTful APIs for your teams CakePHP project. Designed around a component-based
+    architecture, MixerAPI enables developers to pick and choose the functionality they need for developing
+    REST/HATEOAS APIs.
+
+    For documentation please review the project [MixerAPI](http://mixerapi.com) homepage. To change this text edit your
+    `swagger.yaml` file.
+
+    Be sure to checkout the [demo api](https://demo.mixerapi.com/) and [demo source code](https://github.com/mixerapi/demo)
+    for examples.
+
+    OpenApi Formats: [Swagger](/) | [Redoc](/?doctype=redoc)
+
+paths:
+
+definitions:
+
+components:
+  schemas:
+    Exception:
+      type: object
+      properties:
+        exception:
+          type: string
+          example: ExceptionName
+        code:
+          type: integer
+          example: 500
+        url:
+          type: string
+          example: /url/path
+        message:
+          type: string
+          example: Internal Error
+      xml:
+        name: response
+    OperationResult:
+      type: object
+      properties:
+        result:
+          type: boolean
+      xml:
+        name: response
+    Welcome:
+      description: You can modify or delete this schema in config/swagger.yml
+      allOf:
+        - $ref: '#/x-mixerapi-hidden/components/schemas/Info'
+        - type: object
+          properties:
+            environment:
+              type: object
+              properties:
+                php:
+                  description: php version installed
+                  type: string
+                  example: x.x.x
+                mbstring:
+                  description: is php-mbstring installed?
+                  type: boolean
+                openssl:
+                  description: is php-openssl installed?
+                  type: boolean
+                mcrypt:
+                  description: is php-mcrypt installed?
+                  type: boolean
+                intl:
+                  description: is php-intl installed?
+                  type: boolean
+            filesystem:
+              type: object
+              properties:
+                tmp:
+                  description: is TMP writable
+                  type: boolean
+                logs:
+                  description: is LOGS writable
+                  type: boolean
+                cache:
+                  description: is CACHE writable
+                  type: boolean
+            mixerapi:
+              type: object
+              properties:
+                loaded:
+                  description: plugin loaded status
+                  type: boolean
+                home:
+                  description: documentation
+                  type: string
+                  format: url
+                github:
+                  description: github project home
+                  type: string
+                  format: url
+            cakephp:
+              description: various cakephp support info
+              type: object
+      xml:
+        name: response
+
+x-mixerapi-hidden:
+  components:
+    schemas:
+      Info:
+        type: object
+        properties:
+          mixerapi_version:
+            description: mixerapi version installed
+            type: string
+            example: x.x.x
+          cakephp_version:
+            description: cakephp version installed
+            type: string
+            example: x.x.x
+          database:
+            description: database connection status
+            type: string
