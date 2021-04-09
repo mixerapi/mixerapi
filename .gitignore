@@ -1,6 +1,10 @@
 # MixerApi specific files #
 ############################
 /coverage-reports/
+/tests/installer_output/config/*
+!/tests/installer_output/config/.gitkeep
+/tests/installer_output/src/*
+!/tests/installer_output/src/Controller/.gitkeep
 
 # CakePHP specific files #
 ##########################

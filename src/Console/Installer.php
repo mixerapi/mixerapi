@@ -21,50 +21,59 @@ class Installer
      * MixerApi welcome installer
      *
      * @param \Composer\Script\Event $event The composer event object.
+     * @param bool $isTest is this a unit test?
      * @throws \Exception Exception raised by validator.
-     * @return void
+     * @return mixed
      */
-    public static function postInstall(Event $event): void
+    public static function postInstall(Event $event, $isTest = false)
     {
         $io = $event->getIO();
 
-        if (!self::doInstall($io)) {
-            return;
+        if (!$io->isInteractive()) {
+            return null;
         }
 
-        $rootDir = dirname(dirname(__DIR__));
-        $userDir = getcwd();
+        if (!self::doInstall($io, $isTest)) {
+            return false;
+        }
 
         $ds = DIRECTORY_SEPARATOR;
-        $assets = $rootDir . $ds . 'assets' . $ds;
+        $assets = dirname(dirname(__DIR__)) . $ds . 'assets' . $ds;
 
-        $config = $userDir . $ds . 'config' . $ds;
-        $src = $userDir . $ds . 'src' . $ds;
+        if ($isTest) {
+            $testsDir = getcwd() . $ds . 'plugins' . $ds . 'mixerapi' . $ds . 'tests' . $ds;
+            $userDir = $testsDir . 'installer_output' . $ds;
+            $configDir = $testsDir . 'installer_output' . $ds . 'config' . $ds;
+        } else {
+            $userDir = getcwd();
+            $configDir = $userDir . $ds . 'config' . $ds;
+        }
 
-        copy($assets . 'swagger.yml', $config . 'swagger.yml');
-        copy($assets . 'swagger_bake.php', $config . 'swagger_bake.php');
-        copy($assets . 'routes.php', $config . 'routes.php');
-        copy($assets . 'app.php', $config . 'app.php');
-        copy($assets . 'WelcomeController.php', $src . 'Controller' . $ds . 'WelcomeController.php');
-        copy($assets . 'Welcome.php', $src . 'Welcome.php');
-        copy($assets . 'Application.php', $src . 'Application.php');
+        $srcDir = $userDir . 'src' . $ds;
+
+        copy($assets . 'swagger.yml', $configDir . 'swagger.yml');
+        copy($assets . 'swagger_bake.php', $configDir . 'swagger_bake.php');
+        copy($assets . 'routes.php', $configDir . 'routes.php');
+        copy($assets . 'app.php', $configDir . 'app.php');
+        copy($assets . 'WelcomeController.php', $srcDir . 'Controller' . $ds . 'WelcomeController.php');
+        copy($assets . 'Welcome.php', $srcDir . 'Welcome.php');
+        copy($assets . 'Application.php', $srcDir . 'Application.php');
 
         $io->write('<info>Complete!</info>');
+
+        return true;
     }
 
     /**
      * Run skeleton install?
      *
      * @param \Composer\IO\IOInterface $io composer IOInterface
+     * @param bool $isTest is this a unit test?
      * @return bool
      * @throws \Exception
      */
-    private static function doInstall(IOInterface $io): bool
+    private static function doInstall(IOInterface $io, bool $isTest = false): bool
     {
-        if (!$io->isInteractive()) {
-            return false;
-        }
-
         $overwrite = '<warning> overwrite </warning>';
 
         $io->write('<info>MixerAPI can automatically setup an application skeleton with the following:</info>');
@@ -79,6 +88,10 @@ class Installer
         $io->write('---');
 
         $question = 'Run MixerApi application skeleton? (Default to N)';
+
+        if ($isTest == true) {
+            return true;
+        }
 
         $answer = $io->askAndValidate(
             "<info>$question</info> [<comment>Y,n</comment>]? ",
