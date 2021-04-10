@@ -34,7 +34,6 @@
         }
     },
     "scripts": {
-        "post-package-install": ["MixerApi\\Console\\Installer::postInstall"],
         "check": [
             "@test",
             "@cs-check",

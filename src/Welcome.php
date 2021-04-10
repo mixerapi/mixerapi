@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App;
+namespace MixerApi;
 
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
@@ -17,7 +17,7 @@ class Welcome
      * Returns an array of environment information
      *
      * @return array
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     public function info(): array
     {
@@ -45,6 +45,7 @@ class Welcome
     private function database()
     {
         try {
+            /** @var \Cake\Database\Connection $connection */
             $connection = ConnectionManager::get('default');
             if (!$connection->connect()) {
                 return 'unable to connect';
@@ -57,6 +58,7 @@ class Welcome
                     $errorMsg .= '. ' . $attributes['message'];
                 endif;
             endif;
+
             return $errorMsg ?? 'unknown error / unable to connect';
         }
 
@@ -83,8 +85,8 @@ class Welcome
     private function filesystem(): array
     {
         return [
-            'tmp' => is_writable(TMP),
-            'logs' => is_writable(LOGS),
+            'tmp' => defined('TMP') ? is_writable(TMP) : false,
+            'logs' => defined('LOGS') ? is_writable(LOGS) : false,
             'cache' => !empty(Cache::getConfig('_cake_core_')),
         ];
     }
@@ -120,26 +122,24 @@ class Welcome
                 'github' => 'https://github.com/cakephp/',
                 'awesome' => 'https://github.com/FriendsOfCake/awesome-cakephp',
                 'cakephp' => 'https://www.cakephp.org',
-            ]
+            ],
         ];
     }
 
     /**
      * @return string
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     private function whichMixerApiVersion(): string
     {
         try {
             return InstalledVersions::getPrettyVersion('mixerapi/mixerapi');
         } catch (\Exception $e) {
-
         }
 
         try {
             return InstalledVersions::getPrettyVersion('mixerapi/mixerapi-dev');
         } catch (\Exception $e) {
-
         }
 
         throw new RuntimeException('Package mixerapi/mixerapi is not installed');

@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace MixerApi;
 
+use Cake\Console\CommandCollection;
 use Cake\Core\BasePlugin;
 use Cake\Core\PluginApplicationInterface;
+use MixerApi\Command\InstallCommand;
 
 class Plugin extends BasePlugin
 {
@@ -27,5 +29,16 @@ class Plugin extends BasePlugin
         }
 
         parent::bootstrap($app);
+    }
+
+    /**
+     * @param \Cake\Console\CommandCollection $commands CommandCollection
+     * @return \Cake\Console\CommandCollection
+     */
+    public function console(CommandCollection $commands): CommandCollection
+    {
+        $commands->add('mixerapi install', InstallCommand::class);
+
+        return $commands;
     }
 }
