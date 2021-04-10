@@ -48,6 +48,8 @@ This is a read-only repository. Please submit issues and PRs to
 
 ```console
 composer require mixerapi/mixerapi
+bin/cake plugin load MixerApi
+bin/cake mixerapi install
 ```
 
 ## Setup
