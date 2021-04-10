@@ -1,6 +1,7 @@
 {
     "name": "mixerapi/mixerapi",
     "description": "Streamline development of API-first applications in CakePHP",
+    "type": "cakephp-plugin",
     "license": "MIT",
     "keywords": ["cakephp"],
     "require": {
