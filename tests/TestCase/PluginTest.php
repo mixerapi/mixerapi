@@ -17,7 +17,7 @@ class PluginTest extends TestCase
         static::setAppNamespace('MixerApi\Test\App');
     }
 
-    public function testBootstrap()
+    public function test_bootstrap()
     {
         $plugin = new \MixerApi\Plugin();
         $plugin->bootstrap(new Application(CONFIG));

@@ -6,6 +6,7 @@ namespace MixerApi;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
+use Cake\Database\Connection;
 use Cake\Datasource\ConnectionManager;
 use Composer\InstalledVersions;
 use Exception;
@@ -14,6 +15,31 @@ use RuntimeException;
 class Welcome
 {
     /**
+     * @var string
+     */
+    private $phpVersion;
+
+    /**
+     * @var \Cake\Database\Connection
+     */
+    private $connection;
+
+    /**
+     * @var string
+     */
+    public const DATABASE_CONNECTED_MSG = 'connected';
+
+    /**
+     * @param string|null $phpVersion the php version, defaults to PHP_VERSION
+     * @param \Cake\Database\Connection|null $connection CakePHP db connection
+     */
+    public function __construct(?string $phpVersion = PHP_VERSION, ?Connection $connection = null)
+    {
+        $this->phpVersion = $phpVersion ?? PHP_VERSION;
+        $this->connection = $connection ?? ConnectionManager::get('default');
+    }
+
+    /**
      * Returns an array of environment information
      *
      * @return array
@@ -21,7 +47,7 @@ class Welcome
      */
     public function info(): array
     {
-        if (!version_compare(PHP_VERSION, '7.2.0', '>=')) {
+        if (!version_compare($this->phpVersion, '7.2.0', '>=')) {
             throw new RuntimeException(
                 'Your version of PHP is too low. You need PHP 7.2.0 or higher to use CakePHP ' .
                 '(detected `' . PHP_VERSION . '`)'
@@ -45,24 +71,22 @@ class Welcome
     private function database()
     {
         try {
-            /** @var \Cake\Database\Connection $connection */
-            $connection = ConnectionManager::get('default');
-            if (!$connection->connect()) {
+            if (!$this->connection->connect()) {
                 return 'unable to connect';
             }
         } catch (Exception $connectionError) {
             $errorMsg = $connectionError->getMessage();
-            if (method_exists($connectionError, 'getAttributes')) :
+            if (method_exists($connectionError, 'getAttributes')) {
                 $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])) :
+                if (isset($errorMsg['message'])) {
                     $errorMsg .= '. ' . $attributes['message'];
-                endif;
-            endif;
+                }
+            }
 
             return $errorMsg ?? 'unknown error / unable to connect';
         }
 
-        return 'connected';
+        return self::DATABASE_CONNECTED_MSG;
     }
 
     /**
