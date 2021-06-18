@@ -21,13 +21,13 @@ class InstallCommand extends Command
     {
         $parser
             ->setDescription('MixerApi Installer')
+            ->addOption('auto', [
+                'help' => 'Non-interactive install, skips all prompts and uses defaults',
+            ])
             ->addOption('test_config_dir', [
                 'help' => 'For testing purposes only (don\'t use)',
             ])
             ->addOption('test_src_dir', [
-                'help' => 'For testing purposes only (don\'t use)',
-            ])
-            ->addOption('auto', [
                 'help' => 'For testing purposes only (don\'t use)',
             ]);
 
