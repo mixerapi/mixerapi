@@ -30,8 +30,6 @@
     </a>
 </p>
 
-*Note: This is an alpha stage plugin*
-
 MixerAPI is a plugin of plugins, that is to say, it combines many CakePHP libraries into a coherent package to
 streamline API development for CakePHP applications. It eases following a [REST](https://restfulapi.net)
 architecture style and [HATEOS](https://restfulapi.net/hateoas/). In other words, it makes developing APIs a piece
