@@ -3,7 +3,7 @@
     "description": "Streamline development of API-first applications in CakePHP",
     "type": "cakephp-plugin",
     "license": "MIT",
-    "keywords": ["cakephp"],
+    "keywords": ["cakephp","api","rest"],
     "require": {
         "php": ">=7.2",
         "cakephp/cakephp": "~4.0",
@@ -57,6 +57,9 @@
             "role": "Organization"
         }
     ],
+    "suggest": {
+        "cnizzardini/cakephp-preloader": "An OpCache preloader for php >= 7.4 cakephp projects"
+    },
     "prefer-stable": true,
     "minimum_stability": "dev"
 }
