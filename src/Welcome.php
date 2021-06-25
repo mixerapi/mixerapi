@@ -78,9 +78,7 @@ class Welcome
             $errorMsg = $connectionError->getMessage();
             if (method_exists($connectionError, 'getAttributes')) {
                 $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])) {
-                    $errorMsg .= '. ' . $attributes['message'];
-                }
+                $errorMsg .= $attributes['message'] ?? '';
             }
 
             return $errorMsg ?? 'unknown error / unable to connect';
@@ -159,13 +157,14 @@ class Welcome
         try {
             return InstalledVersions::getPrettyVersion('mixerapi/mixerapi');
         } catch (\Exception $e) {
+            try {
+                return InstalledVersions::getPrettyVersion('mixerapi/mixerapi-dev');
+            // the following should not be possible:
+            // @codeCoverageIgnoreStart
+            } catch (\Exception $e) {
+                throw new RuntimeException('Package mixerapi/mixerapi is not installed');
+            }
+            // @codeCoverageIgnoreEnd
         }
-
-        try {
-            return InstalledVersions::getPrettyVersion('mixerapi/mixerapi-dev');
-        } catch (\Exception $e) {
-        }
-
-        throw new RuntimeException('Package mixerapi/mixerapi is not installed');
     }
 }
