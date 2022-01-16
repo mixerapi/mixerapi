@@ -14,29 +14,19 @@ use RuntimeException;
 
 class Welcome
 {
-    /**
-     * @var string
-     */
-    private $phpVersion;
-
-    /**
-     * @var \Cake\Database\Connection
-     */
-    private $connection;
-
-    /**
-     * @var string
-     */
     public const DATABASE_CONNECTED_MSG = 'connected';
 
     /**
      * @param string|null $phpVersion the php version, defaults to PHP_VERSION
      * @param \Cake\Database\Connection|null $connection CakePHP db connection
      */
-    public function __construct(?string $phpVersion = PHP_VERSION, ?Connection $connection = null)
+    public function __construct(private ?string $phpVersion = PHP_VERSION, private ?Connection $connection = null)
     {
-        $this->phpVersion = $phpVersion ?? PHP_VERSION;
-        $this->connection = $connection ?? ConnectionManager::get('default');
+        $this->phpVersion = $this->phpVersion ?? PHP_VERSION;
+
+        if ($this->connection == null && ConnectionManager::get('default') instanceof Connection) {
+            $this->connection = ConnectionManager::get('default');
+        }
     }
 
     /**

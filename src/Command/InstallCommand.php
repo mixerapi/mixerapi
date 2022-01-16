@@ -7,12 +7,24 @@ use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
+use MixerApi\Exception\InstallException;
+use MixerApi\Service\InstallerService;
 
 /**
  * MixerApi installer
  */
 class InstallCommand extends Command
 {
+    public const DONE = 'MixerAPI Installation Complete!';
+
+    /**
+     * @param \MixerApi\Service\InstallerService $installerService The MixerAPI installer service
+     */
+    public function __construct(private InstallerService $installerService)
+    {
+        parent::__construct();
+    }
+
     /**
      * @param \Cake\Console\ConsoleOptionParser $parser ConsoleOptionParser
      * @return \Cake\Console\ConsoleOptionParser
@@ -20,15 +32,10 @@ class InstallCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {
         $parser
-            ->setDescription('MixerApi Installer')
+            ->setDescription('MixerAPI Installer')
             ->addOption('auto', [
                 'help' => 'Non-interactive install, skips all prompts and uses defaults',
-            ])
-            ->addOption('test_config_dir', [
-                'help' => 'For testing purposes only (don\'t use)',
-            ])
-            ->addOption('test_src_dir', [
-                'help' => 'For testing purposes only (don\'t use)',
+                'default' => 'N',
             ]);
 
         return $parser;
@@ -41,58 +48,42 @@ class InstallCommand extends Command
      */
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        if ($args->getOption('auto') !== 'Y') {
-            $io->hr();
-            $io->out('| MixerApi Install');
-            $io->hr();
+        $io->info('Installing MixerAPI');
 
-            $io->info('MixerAPI can automatically setup an application skeleton with the following:');
-            $io->hr(1);
-            $this->printFiles($io);
-            $io->hr(1);
+        $isAuto = $args->getOption('auto') == 'Y';
 
-            if (strtoupper($io->ask('Continue?', 'Y')) !== 'Y') {
-                $io->abort('Install aborted');
+        foreach ($this->installerService->getFiles() as $file) {
+            try {
+                $this->installerService->copyFile($file);
+                $this->copied($io, $file);
+            } catch (InstallException $e) {
+                if ($e->canCopy() && ($isAuto || $io->ask($e->getMessage(), 'Y') == 'Y')) {
+                    $this->installerService->copy($file);
+                    $this->copied($io, $file);
+                    continue;
+                } elseif (!$e->canContinue()) {
+                    $io->abort($e->getMessage());
+                }
             }
         }
 
-        $configDir = defined('CONFIG') ? CONFIG : null;
-        $srcDir = defined('APP_DIR') ? APP_DIR . DS : null;
-
-        $configDir = $args->getOption('test_config_dir') ?? $configDir;
-        $srcDir = $args->getOption('test_src_dir') ?? $srcDir;
-
-        if (empty($configDir) || empty($srcDir)) {
-            $io->abort('Unable to locate config and src directories');
-        }
-
-        $assets = __DIR__ . DS . '..' . DS . '..' . DS . 'assets' . DS;
-
-        copy($assets . 'swagger.yml', $configDir . 'swagger.yml');
-        copy($assets . 'swagger_bake.php', $configDir . 'swagger_bake.php');
-        copy($assets . 'routes.php', $configDir . 'routes.php');
-        copy($assets . 'app.php', $configDir . 'app.php');
-        copy($assets . 'WelcomeController.php', $srcDir . 'Controller' . DS . 'WelcomeController.php');
-
-        $io->success('MixerApi Installation Complete!');
-
-        if ($args->getOption('auto') === 'Y') {
-            $this->printFiles($io);
-        }
+        $io->success(self::DONE);
     }
 
     /**
+     * Writes message to console on copy.
+     *
      * @param \Cake\Console\ConsoleIo $io ConsoleIo
+     * @param array $file The file array
      * @return void
      */
-    private function printFiles(ConsoleIo $io): void
+    private function copied(ConsoleIo $io, array $file): void
     {
-        $overwrite = '<warning> overwrite </warning>';
-
-        $io->out('- config/swagger.yml                        ' . $overwrite);
-        $io->out('- config/swagger_bake.php                   ' . $overwrite);
-        $io->out('- config/routes.php                         ' . $overwrite);
-        $io->out('- config/app.php                            ' . $overwrite);
-        $io->out('- src/Controller/WelcomeController.php      ' . $overwrite);
+        $io->out(sprintf(
+            'Copied %s to %s',
+            $file['name'],
+            $file['destination']
+        ));
+        $io->hr();
     }
 }

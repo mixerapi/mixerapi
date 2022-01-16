@@ -1,11 +1,11 @@
 openapi: "3.0.0"
 info:
-  version:
+  version: 1.0.0
   title: MixerApi
   description: |
     Streamline development of modern RESTful APIs for your teams CakePHP project. Designed around a component-based
     architecture, MixerAPI enables developers to pick and choose the functionality they need for developing APIs. For
-    documentation please review the project [MixerAPI](http://mixerapi.com) homepage. To change this text edit your
+    documentation please review the project [MixerAPI](https://mixerapi.com) homepage. To change this text edit your
     `config/swagger.yaml` file. Be sure to checkout the [demo api](https://demo.mixerapi.com/) and
     [demo source code](https://github.com/mixerapi/demo) for examples.
 
@@ -32,13 +32,6 @@ components:
         message:
           type: string
           example: Internal Error
-      xml:
-        name: response
-    OperationResult:
-      type: object
-      properties:
-        result:
-          type: boolean
       xml:
         name: response
     Welcome:

@@ -1,17 +1,11 @@
-<h1 align="center">
-  MixerAPI
-</h1>
+![Logo](./assets/mixerapi.svg#gh-light-mode-only)
+
 <p align="center">
-  <a href="http://mixerapi.com/">
-    <img alt="MixerAPI" src="https://mixerapi.com/assets/logo.png" />
-  </a>
+    A CakePHP Plugin for RESTful API Development
 </p>
-<h3 align="center">
-  Streamline development of API-first applications in CakePHP
-</h3>
 <p align="center">
-    <a href="LICENSE.txt" target="_blank">
-        <img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square">
+    <a href="https://packagist.org/packages/mixerapi/mixerapi" target="_blank">
+        <img alt="Packagist" src="https://img.shields.io/packagist/v/mixerapi/mixerapi.svg?style=flat-square">
     </a>
     <a href="https://github.com/mixerapi/mixerapi-dev/actions?query=workflow%3ABuild" target="_blank">
         <img alt="Build Status" src="https://github.com/mixerapi/mixerapi-dev/workflows/Build/badge.svg?branch=master">
@@ -19,65 +13,41 @@
     <a href="https://coveralls.io/github/mixerapi/mixerapi-dev?branch=master" target="_blank">
         <img alt="Coverage Status" src="https://coveralls.io/repos/github/mixerapi/mixerapi-dev/badge.svg?branch=master">
     </a>
-    <a href="https://packagist.org/packages/mixerapi/mixerapi" target="_blank">
-        <img alt="Packagist" src="https://img.shields.io/packagist/v/mixerapi/mixerapi.svg?style=flat-square">
-    </a>
     <a href="https://book.cakephp.org/4/en/index.html">
-        <img alt="CakePHP >= 4" src="https://img.shields.io/badge/cakephp-^4.0-red?logo=cakephp">
+        <img alt="CakePHP ^4.2" src="https://img.shields.io/badge/cakephp-^4.2-red?logo=cakephp">
     </a>
     <a href="https://php.net/" target="_blank">
-        <img alt="PHP >= 7.2" src="https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?logo=php">
+        <img alt="PHP ^8.0" src="https://img.shields.io/badge/php-^8.0-8892BF.svg?logo=php">
+    </a>
+    <a href="LICENSE.txt" target="_blank">
+        <img alt="Software License" src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square">
     </a>
 </p>
 
-MixerAPI is a plugin of plugins, that is to say, it combines many CakePHP libraries into a coherent package to
-streamline API development for CakePHP applications. It eases following a [REST](https://restfulapi.net)
-architecture style and [HATEOS](https://restfulapi.net/hateoas/). In other words, it makes developing APIs a piece
-of cake.
+Streamline development of modern RESTful APIs for your teams CakePHP project. Designed around a component-based
+architecture, MixerAPI enables developers to pick and choose the functionality they need for developing REST APIs.
 
 [Documentation](https://mixerapi.com) |
 [Demo Application](https://demo.mixerapi.com) |
 [Demo Source Code](https://github.com/mixerapi/demo)
 
+## Features
+
+- **Rapid Prototyping:** Scaffold your API in seconds with a custom Bake template geared towards modern REST architecture.
+- **OpenAPI:** Automatically generates [OpenAPI](https://www.openapis.org/) from your existing code into
+  [Swagger](https://swagger.io/) and [Redoc](https://redoc.ly/). Attributes provided, but not required.
+- **Error Handling:** Handles exception rendering in XML or JSON.
+- **Data Formats:** Formats responses in JSON, XML, HAL+JSON, or JSON-LD.
+- **Integrations:** Integrates well with other CakePHP 4 compatible plugins.
+- **Minimalist Configuration:** Built for developing, not writing YAML configurations. Most components require zero
+  configuration files.
+- **Non-opinionated:** Develop your way.
+
+
 This is a read-only repository. Please submit issues and PRs to
 [mixerapi/mixerapi-dev](https://github.com/mixerapi/mixerapi-dev)
 
-## Installation
-
-```console
-composer require mixerapi/mixerapi
-bin/cake plugin load MixerApi
-bin/cake mixerapi install
-```
-
-## Setup
-
-To load all MixerApi plugins run `bin/cake plugin load MixerApi`. Alternatively, you can modify your Applications
-bootstrap method yourself:
-
-```php
-# src/Application.php
-public function bootstrap(): void
-{
-    // other logic...
-    $this->addPlugin('MixerApi');
-}
-```
-
-You can also load plugins individually. For instance, if your project only requires HalView and SwaggerBake your
-`Application->bootstrap()` would resemble this:
-
-```php
-# src/Application.php
-public function bootstrap(): void
-{
-    // other logic...
-    $this->addPlugin('MixerApi/HalView');
-    $this->addPlugin('SwaggerBake');
-}
-```
-
-If you don't need the entire suite of plugins simply `composer require` on an as-needed basis. It's up to you!
+For install steps head over to [https://mixerapi.com/install](https://mixerapi.com/install)
 
 ## MixerAPI Core Plugins
 

@@ -4,96 +4,136 @@ namespace MixerApi\Test\TestCase\Command;
 
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use MixerApi\Command\InstallCommand;
+use MixerApi\Exception\InstallException;
+use MixerApi\Service\InstallerService;
+use phpDocumentor\Reflection\Types\Void_;
 
 class InstallCommandTest extends TestCase
 {
     use ConsoleIntegrationTestTrait;
-
-    private const ASSETS_DIR = ROOT . DS . 'plugins' . DS . 'mixerapi' . DS . 'assets' . DS;
-
-    private const CONFIG_DIR = ROOT . DS . 'plugins' . DS . 'mixerapi' . DS . 'tests' . DS . 'installer_output' . DS . 'config' . DS;
-
-    private const SRC_DIR = ROOT . DS . 'plugins' . DS . 'mixerapi' . DS . 'tests' . DS . 'installer_output' . DS . 'src' . DS;
+    // @phpstan-ignore-next-line ignore Constant ROOT not found.
+    private const MIXERAPI = ROOT . DS . 'plugins' . DS . 'mixerapi' . DS;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->setAppNamespace('MixerApi\Test\App');
         $this->useCommandRunner();
-
-        @unlink(self::CONFIG_DIR . 'swagger.yml');
-        @unlink(self::CONFIG_DIR . 'swagger_bake.php');
-        @unlink(self::CONFIG_DIR . 'routes.php');
-        @unlink(self::CONFIG_DIR . 'app.php');
-        @unlink(self::SRC_DIR . 'Controller' . DS . 'WelcomeController.php');
+        $outputDir = self::MIXERAPI . 'tests' . DS . 'installer_output' . DS;
+        @unlink($outputDir . 'config' . DS . 'swagger.yml');
+        @unlink($outputDir . 'config' . DS . 'swagger_bake.php');
+        @unlink($outputDir . 'config' . DS . 'routes.php');
+        @unlink($outputDir . 'config' . DS . 'app.php');
+        @unlink($outputDir . 'src' . DS . 'Controller' . DS . 'WelcomeController.php');
     }
 
-    public function test_interactive_install()
+    public function test_auto_install(): void
     {
-        $this->exec(
-            'mixerapi install' .
-            ' --test_config_dir ' . self::CONFIG_DIR .
-            ' --test_src_dir ' . self::SRC_DIR,
-            ['Y']
+        $installer =  new InstallerService(
+            self::MIXERAPI . 'assets' . DS,
+            self::MIXERAPI . 'tests' . DS . 'installer_output' . DS,
         );
+        $this->mockService(InstallerService::class, function () use ($installer) {
+            return $installer;
+        });
 
-        $this->filesExist();
+        $this->exec('mixerapi install --auto Y');
+
+        $assetsDir = self::MIXERAPI . 'assets' . DS;
+        $configDir = self::MIXERAPI . 'tests' . DS . 'installer_output' . DS . 'config' . DS;
+
+        $this->assertFileExists($configDir . 'swagger.yml');
+        $this->assertFileEquals($assetsDir . 'swagger.yml', $configDir . 'swagger.yml');
+
+        $this->assertFileExists($configDir . 'routes.php');
+        $this->assertFileEquals($assetsDir . 'routes.php',$configDir . 'routes.php');
+
+        $this->assertFileExists($configDir . 'app.php');
+        $this->assertFileEquals($assetsDir . 'app.php',$configDir . 'app.php');
+
+        $srcDir = self::MIXERAPI . 'tests' . DS . 'installer_output' . DS . 'src' . DS;
+
+        $this->assertFileExists($srcDir . 'Controller' . DS . 'WelcomeController.php');
+        $this->assertFileEquals(
+            $assetsDir . 'WelcomeController.php',
+            $srcDir . 'Controller' . DS . 'WelcomeController.php'
+        );
+        $this->assertOutputContains(InstallCommand::DONE);
     }
 
-    public function test_auto_install()
+    public function test_auto_install_with_continuable_exception(): void
     {
-        $this->exec(
-            'mixerapi install' .
-            ' --test_config_dir ' . self::CONFIG_DIR .
-            ' --test_src_dir ' . self::SRC_DIR .
-            ' --auto Y'
-        );
+        $mockInstaller = $this->getMockBuilder(InstallerService::class)
+            ->setConstructorArgs([
+                self::MIXERAPI . 'assets' . DS,
+                self::MIXERAPI . 'tests' . DS . 'installer_output' . DS,
+            ])
+            ->onlyMethods([
+                'copyFile',
+                'getFiles',
+                'copy'
+            ])
+            ->getMock();
 
-        $this->filesExist();
+        $mockInstaller->method('copyFile')
+            ->withAnyParameters()
+            ->willThrowException((new InstallException())->setCanContinue(true)->setCanCopy(true));
+
+        $mockInstaller->method('copy')
+            ->withAnyParameters()
+            ->willReturn(true);
+
+        $mockInstaller->method('getFiles')
+            ->withAnyParameters()
+            ->willReturn([
+                'test' => [
+                    'name' => 'Test',
+                    'source' => __FILE__,
+                    'destination' => '/tmp/' . md5((string) microtime(true)),
+                ]
+            ]);
+
+        $this->mockService(InstallerService::class, function () use ($mockInstaller) {
+            return $mockInstaller;
+        });
+
+        $this->exec('mixerapi install', ['Y']);
+        $this->assertOutputContains(InstallCommand::DONE);
     }
 
-    public function test_abort_interactive_install()
+    public function test_auto_install_with_exception(): void
     {
-        $this->exec(
-            'mixerapi install' .
-            ' --test_config_dir ' . self::CONFIG_DIR .
-            ' --test_src_dir ' . self::SRC_DIR,
-            ['N']
-        );
+        $mockInstaller = $this->getMockBuilder(InstallerService::class)
+            ->setConstructorArgs([
+                self::MIXERAPI . 'assets' . DS,
+                self::MIXERAPI . 'tests' . DS . 'installer_output' . DS,
+            ])
+            ->onlyMethods([
+                'copyFile',
+                'getFiles',
+            ])
+            ->getMock();
 
-        $this->assertExitError();
-    }
+        $mockInstaller->method('copyFile')
+            ->withAnyParameters()
+            ->willThrowException((new InstallException()));
 
-    private function filesExist()
-    {
-        $this->assertFileExists(self::CONFIG_DIR . 'swagger.yml');
-        $this->assertFileEquals(
-            self::ASSETS_DIR . 'swagger.yml',
-            self::CONFIG_DIR . 'swagger.yml'
-        );
+        $mockInstaller->method('getFiles')
+            ->withAnyParameters()
+            ->willReturn([
+                'test' => [
+                    'name' => 'Test',
+                    'source' => __FILE__,
+                    'destination' => __FILE__,
+                ]
+            ]);
 
-        $this->assertFileExists(self::CONFIG_DIR . 'swagger_bake.php');
-        $this->assertFileEquals(
-            self::ASSETS_DIR . 'swagger_bake.php',
-            self::CONFIG_DIR . 'swagger_bake.php'
-        );
+        $this->mockService(InstallerService::class, function () use ($mockInstaller) {
+            return $mockInstaller;
+        });
 
-        $this->assertFileExists(self::CONFIG_DIR . 'routes.php');
-        $this->assertFileEquals(
-            self::ASSETS_DIR . 'routes.php',
-            self::CONFIG_DIR . 'routes.php'
-        );
-
-        $this->assertFileExists(self::CONFIG_DIR . 'app.php');
-        $this->assertFileEquals(
-            self::ASSETS_DIR . 'app.php',
-            self::CONFIG_DIR . 'app.php'
-        );
-
-        $this->assertFileExists(self::SRC_DIR . 'Controller' . DS . 'WelcomeController.php');
-        $this->assertFileEquals(
-            self::ASSETS_DIR . 'WelcomeController.php',
-            self::SRC_DIR . 'Controller' . DS . 'WelcomeController.php'
-        );
+        $this->exec('mixerapi install');
+        $this->assertExitCode(1);
     }
 }

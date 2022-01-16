@@ -17,18 +17,18 @@ class WelcomeTest extends TestCase
         parent::setUp();
     }
 
-    public function test_welcome()
+    public function test_welcome(): void
     {
         $this->assertIsArray((new Welcome())->info());
     }
 
-    public function test_old_php_version_exception()
+    public function test_old_php_version_exception(): void
     {
         $this->expectException(\RuntimeException::class);
         (new Welcome('7.0.0'))->info();
     }
 
-    public function test_database_connection_failed()
+    public function test_database_connection_failed(): void
     {
         $info = (new Welcome(null, new Connection(['driver' => new Mysql()])))->info();
         $this->assertNotEquals(Welcome::DATABASE_CONNECTED_MSG, $info['database']);
