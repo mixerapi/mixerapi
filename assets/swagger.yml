@@ -35,6 +35,7 @@ components:
       xml:
         name: response
     Welcome:
+      type: object
       description: You can modify or delete this schema in config/swagger.yml
       allOf:
         - $ref: '#/x-mixerapi-hidden/components/schemas/Info'
