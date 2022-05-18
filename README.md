@@ -65,7 +65,8 @@ MixerAPI automatically installs the following plugins for your RESTful API proje
 
 ## Recommended Plugins
 
-| Plugin | Description |
-| ------------- | ------------- |
-| [MixerApi/Crud](https://github.com/mixerapi/crud) | A service provider for CRUD (Create/Read/Update/Delete) operations. Since this plugin uses the experimental CakePHP dependency injection it must be enabled separately. |
-| [Search](https://github.com/FriendsOfCake/search) | Search provides a simple interface to create paginate-able filters for your CakePHP application. |
+| Plugin                                                   | Description |
+|----------------------------------------------------------| ------------- |
+| [MixerApi/Crud](https://github.com/mixerapi/crud)        | A service provider for CRUD (Create/Read/Update/Delete) operations. Since this plugin uses the experimental CakePHP dependency injection it must be enabled separately. |
+| [MixerApi/JwtAuth](https://github.com/mixerapi/jwt-auth) | A JWT authentication library for CakePHP supporting both HMAC (HS256 or HS512) and RSA (RS256 or RS512) with JSON Web Keys. |
+| [Search](https://github.com/FriendsOfCake/search)        | Search provides a simple interface to create paginate-able filters for your CakePHP application. |
