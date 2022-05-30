@@ -32,7 +32,8 @@
     ],
     "suggest": {
         "cnizzardini/cakephp-preloader": "An OpCache preloader for php >= 7.4 cakephp projects",
-        "friendsofcake/search": "Search provides a simple interface to create paginate-able filters for your project"
+        "friendsofcake/search": "Search provides a simple interface to create paginate-able filters for your project",
+        "mixerapi/jwt-auth": "For JWT Authentication"
     },
     "prefer-stable": true,
     "minimum_stability": "dev"
