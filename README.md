@@ -60,7 +60,6 @@ MixerAPI automatically installs the following plugins for your RESTful API proje
 | [MixerApi/ExceptionRender](https://github.com/mixerapi/exception-render) | Handles rendering entity validation errors and other exceptions for your API |
 | [MixerApi/HalView](https://github.com/mixerapi/hal-view) | A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specification.html)) View for CakePHP |
 | [MixerApi/JsonLdView](https://github.com/mixerapi/json-ld-view) | A [JSON-LD](https://json-ld.org/) View for CakePHP |
-| [MixerApi/Rest](https://github.com/mixerapi/rest) | Gets your API project up and going quickly by creating routes for you |
 | [SwaggerBake](https://github.com/cnizzardini/cakephp-swagger-bake) | A delightfully tasty tool for generating Swagger documentation with OpenApi 3.0.0 schema |
 
 ## Recommended Plugins

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace MixerApi\Command;
 
 use Cake\Console\Arguments;
-use Cake\Console\Command;
+use Cake\Console\BaseCommand;
 use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use MixerApi\Exception\InstallException;
@@ -13,7 +13,7 @@ use MixerApi\Service\InstallerService;
 /**
  * MixerApi installer
  */
-class InstallCommand extends Command
+class InstallCommand extends BaseCommand
 {
     public const DONE = 'MixerAPI Installation Complete!';
 
@@ -22,12 +22,10 @@ class InstallCommand extends Command
      */
     public function __construct(private InstallerService $installerService)
     {
-        parent::__construct();
     }
 
     /**
-     * @param \Cake\Console\ConsoleOptionParser $parser ConsoleOptionParser
-     * @return \Cake\Console\ConsoleOptionParser
+     * @inheritDoc
      */
     protected function buildOptionParser(ConsoleOptionParser $parser): ConsoleOptionParser
     {

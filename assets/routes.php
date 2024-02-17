@@ -23,7 +23,6 @@
 
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
-use MixerApi\Rest\Lib\AutoRouter;
 
 /*
  * The default class to use for all routes
@@ -70,12 +69,6 @@ $routes->scope('/', function (RouteBuilder $builder) {
             ]
         ]
     ]);
-
-    /**
-     * Automatically expose RESTful CRUD routes with a handy AutoRouter.
-     * @see https://github.com/mixerapi/rest
-     */
-    (new AutoRouter($builder))->buildResources();
 
     /*
      * Here, we are connecting '/' (base path) to a SwaggerBake

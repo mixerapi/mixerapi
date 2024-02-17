@@ -2,12 +2,11 @@
 
 namespace MixerApi\Test\TestCase\Command;
 
-use Cake\TestSuite\ConsoleIntegrationTestTrait;
+use Cake\Console\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use MixerApi\Command\InstallCommand;
 use MixerApi\Exception\InstallException;
 use MixerApi\Service\InstallerService;
-use phpDocumentor\Reflection\Types\Void_;
 
 class InstallCommandTest extends TestCase
 {
@@ -19,7 +18,6 @@ class InstallCommandTest extends TestCase
     {
         parent::setUp();
         $this->setAppNamespace('MixerApi\Test\App');
-        $this->useCommandRunner();
         $outputDir = self::MIXERAPI . 'tests' . DS . 'installer_output' . DS;
         @unlink($outputDir . 'config' . DS . 'swagger.yml');
         @unlink($outputDir . 'config' . DS . 'swagger_bake.php');

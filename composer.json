@@ -5,16 +5,15 @@
     "license": "MIT",
     "keywords": ["cakephp","api","rest"],
     "require": {
-        "php": "^8.0",
-        "cakephp/cakephp": "^4.2",
-        "cnizzardini/cakephp-swagger-bake": "^2.1",
-        "mixerapi/bake": "^1.0",
-        "mixerapi/collection-view": "^1.0",
-        "mixerapi/core": "^1.0",
-        "mixerapi/exception-render": "^1.0",
-        "mixerapi/hal-view": "^1.0",
-        "mixerapi/json-ld-view": "^1.0",
-        "mixerapi/rest": "^1.0"
+        "php": "^8.1",
+        "cakephp/cakephp": "^5.0",
+        "cnizzardini/cakephp-swagger-bake": "^3.0",
+        "mixerapi/bake": "^2.0",
+        "mixerapi/collection-view": "^2.0",
+        "mixerapi/core": "^2.0",
+        "mixerapi/exception-render": "^2.0",
+        "mixerapi/hal-view": "^2.0",
+        "mixerapi/json-ld-view": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -22,6 +21,7 @@
         }
     },
     "support": {
+        "issues": "https://github.com/mixerapi/mixerapi-dev/issues",
         "source": "https://github.com/mixerapi/mixerapi"
     },
     "authors": [
@@ -34,7 +34,5 @@
         "cnizzardini/cakephp-preloader": "An OpCache preloader for php >= 7.4 cakephp projects",
         "friendsofcake/search": "Search provides a simple interface to create paginate-able filters for your project",
         "mixerapi/jwt-auth": "For JWT Authentication"
-    },
-    "prefer-stable": true,
-    "minimum_stability": "dev"
+    }
 }

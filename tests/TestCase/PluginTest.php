@@ -28,7 +28,6 @@ class PluginTest extends TestCase
             'MixerApi/ExceptionRender',
             'MixerApi/HalView',
             'MixerApi/JsonLdView',
-            'MixerApi/Rest',
             'SwaggerBake',
             'Search',
         ];
