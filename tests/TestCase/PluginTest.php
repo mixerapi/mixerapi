@@ -19,7 +19,7 @@ class PluginTest extends TestCase
 
     public function test_bootstrap(): void
     {
-        $plugin = new \MixerApi\Plugin();
+        $plugin = new \MixerApi\MixerApiPlugin();
         $plugin->bootstrap(new Application(CONFIG));
 
         $plugins = [

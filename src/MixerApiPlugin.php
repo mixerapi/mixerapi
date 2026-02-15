@@ -11,7 +11,7 @@ use Cake\Core\PluginApplicationInterface;
 use MixerApi\Command\InstallCommand;
 use MixerApi\Service\InstallerService;
 
-class Plugin extends BasePlugin
+class MixerApiPlugin extends BasePlugin
 {
     /**
      * Plugin name.
