@@ -1,9 +1,9 @@
 ![Logo](./assets/mixerapi.svg#gh-light-mode-only)
 
-<p align="center">
+<p style="text-align: center">
     A CakePHP Plugin for RESTful API Development
 </p>
-<p align="center">
+<p style="text-align: center">
     <a href="https://packagist.org/packages/mixerapi/mixerapi" target="_blank">
         <img alt="Packagist" src="https://img.shields.io/packagist/v/mixerapi/mixerapi.svg?style=flat-square">
     </a>
